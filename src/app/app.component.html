@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<mat-drawer-container class="example-container" autosize>
+  
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <app-controller></app-controller>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <img src="../assets/icons/option.svg" /> 
+    </button>
+
+    <!-- sorting bar -->
+    <div>
+      <app-sortingboard></app-sortingboard>
+    </div>
+  </div>
+
+</mat-drawer-container>
+
+
+
