@@ -1,0 +1,11 @@
+.bars{
+    height: 100px;
+    width: 3px;
+    background-color: darkviolet;
+    display: block;
+    margin-left: 1px;
+    float: left;
+    position: absolute;
+    left: 137px;
+    bottom: 51px;
+}

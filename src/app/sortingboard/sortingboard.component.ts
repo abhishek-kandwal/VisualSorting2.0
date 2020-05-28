@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sortingboard.component.css']
 })
 export class SortingboardComponent implements OnInit {
-
-  constructor() { }
+  bars = '<app-bars ></app-bars><app-bars ></app-bars><app-bars ></app-bars>'
+    constructor() { }
 
   ngOnInit(): void {
   }
