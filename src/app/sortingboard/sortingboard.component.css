@@ -9,3 +9,15 @@
     margin-left: 30px;
     padding-left: 20px;
 }
+
+.bars{
+    height: 100px;
+    width: 3px;
+    background-color: darkviolet;
+    display: block;
+    margin-left: 5px;
+    float: left;
+    position: absolute;
+    left: 137px;
+    bottom: 51px;
+}

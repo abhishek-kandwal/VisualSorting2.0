@@ -5,7 +5,6 @@ import { MaterialModule } from './material';
 import { AppComponent } from './app.component';
 import { ControllerComponent } from './controller/controller.component';
 import { SortingboardComponent } from './sortingboard/sortingboard.component';
-import { BarsComponent } from './bars/bars.component';
 import { HeaderComponent } from './common/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { from } from 'rxjs';
@@ -15,7 +14,6 @@ import { from } from 'rxjs';
     AppComponent,
     ControllerComponent,
     SortingboardComponent,
-    BarsComponent,
     HeaderComponent
   ],
   imports: [
