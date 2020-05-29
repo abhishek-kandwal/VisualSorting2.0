@@ -13,7 +13,10 @@ export class CreateGraphService {
   generateGraph(){
     let graphVal = [];
     for(let i = 0; i < 300 ; i++ ){
-      let value = Math.random() * 1000;
+      let value = Math.floor(Math.random() * 100) * 10;
+      if (value > 600){
+        value = value - 550;
+      }
       graphVal.push(value);
     }
     this.$graphValues.next(graphVal);
@@ -25,5 +28,9 @@ export class CreateGraphService {
 
   getGraph(){
     return this.$graphValues.asObservable();
+  }
+
+  setGraph(graphVal: any){
+    this.$graphValues.next(graphVal);
   }
 }

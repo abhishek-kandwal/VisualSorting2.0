@@ -38,7 +38,8 @@ export class SortingboardComponent implements AfterViewInit {
 
   createBars() {
     var left = 137;
-    this.graphvalues.map(value => {
+
+     this.graphvalues.map(value => {
       let child = document.createElement('div');
       child.id = 'bars';                             // id
       child.className = 'bars'                       // class name
@@ -52,17 +53,11 @@ export class SortingboardComponent implements AfterViewInit {
       child.style.left = `${left = left + 5}px`;                    // left
       child.style.bottom = '51px';                   // bottom
       document.getElementById('playboard').appendChild(child);
-    });
+     });
   }
 
   clearBars() {
-    //document.getElementById("playboard").remove();
-
-    console.log('clear');
-    var item = document.getElementById("playboard");
-    item.parentNode.removeChild(item);
-
-
+    document.getElementById("playboard").innerHTML = '';
   }
 
 }

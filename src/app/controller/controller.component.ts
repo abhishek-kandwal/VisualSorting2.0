@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateGraphService } from '../../shared/services/create-graph.service';
+import { InsertionSortService } from '../../shared/services/insertion-sort.service';
 
 @Component({
   selector: 'app-controller',
@@ -9,7 +10,8 @@ import { CreateGraphService } from '../../shared/services/create-graph.service';
 
 export class ControllerComponent implements OnInit {
 
-  constructor( private createGraphservice : CreateGraphService) { }
+  constructor( private createGraphservice : CreateGraphService,
+               private insertionSortService : InsertionSortService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +22,20 @@ export class ControllerComponent implements OnInit {
 
   clearGraph(){
     this.createGraphservice.clearGraph();
+  }
+
+  doSort( algo: String){
+    if( algo == 'Insertion'){
+        let graphValues;
+        this.createGraphservice.getGraph().subscribe( val => {
+          graphValues = val;
+        });
+        this.insertionSortService.doSort(graphValues);
+    } else if ( algo == 'Quick'){
+      console.log('quick');
+    } else if ( algo == 'Bubble'){
+      console.log('bubble');
+    }
   }
 
 }
