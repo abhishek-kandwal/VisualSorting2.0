@@ -1,31 +1,39 @@
 import { Injectable } from '@angular/core';
 import { CreateGraphService } from './create-graph.service';
+import { SetgraphService } from './setgraph.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InsertionSortService {
+  
+  sortedArray: any = [];
 
-  constructor(private createGraphService : CreateGraphService) { }
+  constructor(private setgraphService : SetgraphService) { }
 
   doSort(graphValue: any){
       for (let i = 0; i < graphValue.length; i++) {
         let j = i;
         while ((j > 0) && (graphValue[j] < graphValue[j - 1])) {
           
+          // this.sortedArray.push([graphValue[j-1], graphValue[j]]);
+          
           let swapvalue = graphValue[j];
           graphValue[j] = graphValue[j - 1];
           graphValue[j - 1] = swapvalue
-          j--;
+          
+          // this.sortedArray.push([graphValue[j-1], graphValue[j]]);
 
-          this.setnewgraph(i, graphValue);
+          j--;
+          this.sortedArray.push([...graphValue]);
+
+          
         }
       }
+      this.setnewgraph(this.sortedArray);
   }
 
-  setnewgraph(i, graphValue){
-    setTimeout( () => {
-      this.createGraphService.setGraph(graphValue);
-    }, i * 1000);
+  setnewgraph( graphValue){
+      this.setgraphService.setSortedGraph(graphValue);
   }
 }
