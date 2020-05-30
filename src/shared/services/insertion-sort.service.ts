@@ -18,10 +18,14 @@ export class InsertionSortService {
           graphValue[j - 1] = swapvalue
           j--;
 
-          setTimeout( () => {
-            this.createGraphService.setGraph(graphValue);
-          }, i * 1000);
+          this.setnewgraph(i, graphValue);
         }
       }
+  }
+
+  setnewgraph(i, graphValue){
+    setTimeout( () => {
+      this.createGraphService.setGraph(graphValue);
+    }, i * 1000);
   }
 }
