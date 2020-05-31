@@ -12,7 +12,7 @@ export class CreateGraphService {
 
   generateGraph(){
     let graphVal = [];
-    for(let i = 0; i < 300 ; i++ ){
+    for(let i = 0; i < 150 ; i++ ){
       let value = Math.floor(Math.random() * 1000);
       if (value > 600){
         value = value - 550;

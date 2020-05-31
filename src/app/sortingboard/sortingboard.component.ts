@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CreateGraphService } from '../../shared/services/create-graph.service';
-import { SetgraphService } from '../../shared/services/setgraph.service';
-import { VirtualTimeScheduler } from 'rxjs';
+import { CreateGraphService } from '../../shared/services/graphControl/create-graph.service';
+import { SetgraphService } from '../../shared/services/graphControl/setgraph.service';
 
 @Component({
   selector: 'app-sortingboard',
@@ -10,39 +9,32 @@ import { VirtualTimeScheduler } from 'rxjs';
 })
 export class SortingboardComponent implements AfterViewInit {
 
-  rectvalx1 = 0;
-  rectvaly1 = 0;
-  rectvalx2 = 20;
-  rectvaly2 = 100;
-
-
   graphvalues = [];
+  selectedNodes = [];
+
   constructor(
     private creategraphservice: CreateGraphService,
-    private setgraphService: SetgraphService) { }
-
-  // ngOnInit(){
-  //   this.creategraphservice.getGraph().subscribe( result => {
-  //     if(result){
-  //       this.clearBars();
-  //       this.graphvalues = result;
-  //       this.createBars();
-  //     } else {
-  //       this.clearBars();
-  //     }
-  //   });
-  // }
-
+    private setgraphService: SetgraphService
+    ) { }
 
   ngAfterViewInit(): void {
 
+    this.setgraphService.getselectedNodes().subscribe(result => {
+      if(result){
+        this.selectedNodes = result;
+      }
+    });
+
     this.setgraphService.getSortedGraph().subscribe(result => {
       if (result) {
-        for (let i = 1; i < result.length; i++) {
+        let isGraphSorted = false;
+        for (let i = 1; i < result.length+1; i++) {
+          let graphvalues = result[i-1];
+          let nodes = this.selectedNodes[i-1];
           setTimeout(() => {
             this.clearBars();
-            let graphvalues = result[i-1];
-            this.createBars(graphvalues);
+            (i == result.length)?isGraphSorted = true: 0;
+            this.createBars(graphvalues , i-1 , nodes , isGraphSorted);
           }, i * 10);
         }
       }
@@ -59,17 +51,20 @@ export class SortingboardComponent implements AfterViewInit {
     });
   }
 
-  createBars(graphval?:any) {
+  createBars(graphval?:any , i?:any , nodes?:any , isGraphSorted?:any) {
     var left = 137;
-    // let i = 1;
     if(graphval){
+      let [bar1 , bar2] = nodes;
       graphval.map(value => {
+      
+      let bgColor = (value == bar1 || value == bar2)?'blue':'red';
+          isGraphSorted?bgColor = 'green':0;
       let child = document.createElement('div');
       child.id = 'bars';                             // id
       child.className = 'bars'                       // class name
       child.style.width = '3px';                     // width
       child.style.height = `${value}px`;                    // height
-      child.style.backgroundColor = 'red';            // background color
+      child.style.backgroundColor = bgColor;            // background color
       child.style.display = 'block';                 // display
       child.style.marginLeft = '5px';                // margin left
       child.style.float = 'left';                    // float

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CreateGraphService } from './create-graph.service';
-import { SetgraphService } from './setgraph.service';
+import { CreateGraphService } from '../../graphControl/create-graph.service';
+import { SetgraphService } from '../../graphControl/setgraph.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import { SetgraphService } from './setgraph.service';
 export class InsertionSortService {
   
   sortedArray: any = [];
+  selectedNodes:any = [];
 
   constructor(private setgraphService : SetgraphService) { }
 
@@ -15,25 +16,23 @@ export class InsertionSortService {
       for (let i = 0; i < graphValue.length; i++) {
         let j = i;
         while ((j > 0) && (graphValue[j] < graphValue[j - 1])) {
-          
-          // this.sortedArray.push([graphValue[j-1], graphValue[j]]);
-          
+                 
           let swapvalue = graphValue[j];
           graphValue[j] = graphValue[j - 1];
           graphValue[j - 1] = swapvalue
           
-          // this.sortedArray.push([graphValue[j-1], graphValue[j]]);
-
+          this.selectedNodes.push([graphValue[j-1], graphValue[j]]);
           j--;
           this.sortedArray.push([...graphValue]);
 
           
         }
       }
-      this.setnewgraph(this.sortedArray);
+      this.setnewgraph(this.selectedNodes , this.sortedArray);
   }
 
-  setnewgraph( graphValue){
+  setnewgraph( selectedNodes:any , graphValue:any ){
+      this.setgraphService.setselectedNodes(selectedNodes);
       this.setgraphService.setSortedGraph(graphValue);
   }
 }
