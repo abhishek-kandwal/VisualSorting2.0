@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateGraphService } from '../../shared/services/create-graph.service';
-import { InsertionSortService } from '../../shared/services/insertion-sort.service';
+import { CreateGraphService } from '../../shared/services/graphControl/create-graph.service';
+import { InsertionSortService } from '../../shared/services/sortingAlgos/insertionSort/insertion-sort.service';
 
 @Component({
   selector: 'app-controller',
