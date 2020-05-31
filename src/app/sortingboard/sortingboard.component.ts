@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CreateGraphService } from '../../shared/services/graphControl/createGraph/create-graph.service';
 import { SetgraphService } from '../../shared/services/graphControl/setGraph/setgraph.service';
+import { ManualControlService } from '../../shared/services/graphControl/manualControl/manualControl.service';
 
 @Component({
   selector: 'app-sortingboard',
@@ -9,15 +10,21 @@ import { SetgraphService } from '../../shared/services/graphControl/setGraph/set
 })
 export class SortingboardComponent implements AfterViewInit {
 
+  timer :number = 10;
   graphvalues = [];
   selectedNodes = [];
 
   constructor(
     private creategraphservice: CreateGraphService,
-    private setgraphService: SetgraphService
+    private setgraphService: SetgraphService,
+    private ManualControlService: ManualControlService
     ) { }
 
   ngAfterViewInit(): void {
+
+    this.ManualControlService.getGraphManual().subscribe( result => {
+      this.timer = result;
+    });
 
     this.setgraphService.getselectedNodes().subscribe(result => {
       if(result){
@@ -35,7 +42,7 @@ export class SortingboardComponent implements AfterViewInit {
             this.clearBars();
             (i == result.length)?isGraphSorted = true: 0;
             this.createBars(graphvalues , i-1 , nodes , isGraphSorted);
-          }, i * 10);
+          }, i * this.timer );
         }
       }
     });

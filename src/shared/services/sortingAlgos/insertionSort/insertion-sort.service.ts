@@ -13,6 +13,8 @@ export class InsertionSortService {
   constructor(private setgraphService : SetgraphService) { }
 
   doSort(graphValue: any){
+    this.sortedArray = [];
+    this.selectedNodes = [];
       for (let i = 0; i < graphValue.length; i++) {
         let j = i;
         while ((j > 0) && (graphValue[j] < graphValue[j - 1])) {
