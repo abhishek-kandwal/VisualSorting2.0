@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateGraphService } from '../../shared/services/graphControl/create-graph.service';
+import { CreateGraphService } from '../../shared/services/graphControl/createGraph/create-graph.service';
 import { InsertionSortService } from '../../shared/services/sortingAlgos/insertionSort/insertion-sort.service';
+import { IsManualService } from '../../shared/services/graphControl/isManual/is-manual.service';
 
 @Component({
   selector: 'app-controller',
@@ -10,10 +11,13 @@ import { InsertionSortService } from '../../shared/services/sortingAlgos/inserti
 
 export class ControllerComponent implements OnInit {
 
+  isAuto:boolean = true;
   constructor( private createGraphservice : CreateGraphService,
-               private insertionSortService : InsertionSortService) { }
+               private insertionSortService : InsertionSortService,
+               private isManualService: IsManualService) { }
 
   ngOnInit(): void {
+    this.isManualService.getIsManual().subscribe( result => this.isAuto = result);
   }
 
   CreateGraph(){

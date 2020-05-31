@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CreateGraphService } from '../../graphControl/create-graph.service';
-import { SetgraphService } from '../../graphControl/setgraph.service';
+import { CreateGraphService } from '../../graphControl/createGraph/create-graph.service';
+import { SetgraphService } from '../../graphControl/setGraph/setgraph.service';
 
 @Injectable({
   providedIn: 'root'

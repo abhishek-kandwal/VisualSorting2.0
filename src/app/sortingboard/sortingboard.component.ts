@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CreateGraphService } from '../../shared/services/graphControl/create-graph.service';
-import { SetgraphService } from '../../shared/services/graphControl/setgraph.service';
+import { CreateGraphService } from '../../shared/services/graphControl/createGraph/create-graph.service';
+import { SetgraphService } from '../../shared/services/graphControl/setGraph/setgraph.service';
 
 @Component({
   selector: 'app-sortingboard',
