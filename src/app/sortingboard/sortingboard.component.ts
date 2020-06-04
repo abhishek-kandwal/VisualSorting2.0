@@ -10,7 +10,7 @@ import { ManualControlService } from '../../shared/services/graphControl/manualC
 })
 export class SortingboardComponent implements AfterViewInit {
 
-  timer :number = 10;
+  timer :number;
   graphvalues = [];
   selectedNodes = [];
 
@@ -22,9 +22,6 @@ export class SortingboardComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.ManualControlService.getGraphManual().subscribe( result => {
-      this.timer = result;
-    });
 
     this.setgraphService.getselectedNodes().subscribe(result => {
       if(result){
@@ -34,6 +31,10 @@ export class SortingboardComponent implements AfterViewInit {
 
     this.setgraphService.getSortedGraph().subscribe(result => {
       if (result) {
+
+        this.ManualControlService.getGraphManual().subscribe( result => {
+          this.timer = result;
+        });
         let isGraphSorted = false;
         for (let i = 1; i < result.length+1; i++) {
           let graphvalues = result[i-1];

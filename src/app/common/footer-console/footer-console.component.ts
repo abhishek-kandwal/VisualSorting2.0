@@ -46,12 +46,11 @@ export class FooterConsoleComponent implements OnInit {
   }
   
   onSubmit() {
-    this.doSort(this.ManualForm.value.algo, this.ManualForm.value.speed, this.ManualFormBars.value.Bars);
+    this.doSort(this.ManualForm.value.algo, this.ManualForm.value.Speed);
   }
 
   CreateGraph(){
     this.ManualControlService.setBarsManual(this.ManualFormBars.value.Bars);
-      console.log(this.ManualFormBars.value.Bars);
     this.createGraphservice.generateGraph();
   }
 
@@ -59,8 +58,9 @@ export class FooterConsoleComponent implements OnInit {
     this.createGraphservice.clearGraph();
   }
 
-  doSort( algo: String , Speed: number , Bars: number){
+  doSort( algo: String , Speed: number){
     
+    console.log("speed", Speed);
     this.ManualControlService.setGraphManual(Speed);
 
     if( algo == 'Insertion'){

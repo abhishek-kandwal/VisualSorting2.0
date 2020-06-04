@@ -7,7 +7,7 @@ import { ManualControlService } from '../manualControl/manualControl.service';
 })
 export class CreateGraphService implements OnInit {
 
-  noOfBars:number = 150;
+  noOfBars:number;
 
   constructor(
     private manualControlService:ManualControlService
@@ -15,7 +15,6 @@ export class CreateGraphService implements OnInit {
 
   ngOnInit(){
     this.manualControlService.getBarsManual().subscribe( result => {
-      console.log(result);
       this.noOfBars = result;
     });
   }
@@ -23,6 +22,11 @@ export class CreateGraphService implements OnInit {
   private $graphValues = new BehaviorSubject<any>([]);
 
   generateGraph(){
+    
+    this.manualControlService.getBarsManual().subscribe( result => {
+      this.noOfBars = result;
+    });
+
     let graphVal = [];
     for(let i = 0; i <  this.noOfBars ; i++ ){
       let value = Math.floor(Math.random() * 1000);

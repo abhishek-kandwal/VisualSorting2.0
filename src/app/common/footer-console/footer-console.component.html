@@ -15,7 +15,7 @@
             </label>
 
             <button [disabled]="!ManualFormBars.valid" class="textboxes" >Generate Graph</button>
-            <button [disabled]="!ManualFormBars.valid" class="textboxes" (click)="clearGraph()">clear Graph</button>
+            <button type="button" [disabled]="!ManualFormBars.valid" class="textboxes" (click)="clearGraph()">clear Graph</button>
         </form>
     </div>
     <div class="footerBody">
