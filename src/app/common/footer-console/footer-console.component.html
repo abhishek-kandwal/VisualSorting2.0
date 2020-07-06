@@ -1,0 +1,59 @@
+<div class="mainFooter" *ngIf="isManual">
+    <div class="footerHeader">
+        <h1>Manual Control </h1>
+    </div>
+    <div class="footerConsole">
+        <form (ngSubmit)="CreateGraph()" [formGroup]="ManualFormBars">
+            <label class="textboxes">
+                <mat-form-field class="example-full-width">
+                    <mat-label>No. of Bars</mat-label>
+                    <input matInput formControlName="Bars" placeholder="100" autocomplete="off">
+                    <!-- <mat-error *ngIf="!ManualForm.Speed.required">
+                    Please enter a valid email address
+                </mat-error> -->
+                </mat-form-field>
+            </label>
+
+            <button [disabled]="!ManualFormBars.valid" class="textboxes" >Generate Graph</button>
+            <button type="button" [disabled]="!ManualFormBars.valid" class="textboxes" (click)="clearGraph()">clear Graph</button>
+        </form>
+    </div>
+    <div class="footerBody">
+        <form [formGroup]="ManualForm" (ngSubmit)="onSubmit()">
+
+            <label class="textboxes">
+                <mat-form-field>
+                    <mat-label>Sorting Algo:</mat-label>
+                    <mat-select formControlName="algo">
+                        <mat-option *ngFor="let Algo of Algos" [value]="Algo.value">
+                            {{Algo.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </label>
+
+            <label class="textboxes">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Speed (ms):</mat-label>
+                    <input matInput formControlName="Speed" placeholder="100" autocomplete="off">
+                    <!-- <mat-error *ngIf="!ManualForm.Speed.required">
+                        Please enter a valid email address
+                    </mat-error> -->
+                </mat-form-field>
+            </label>
+
+            <button type="submit" [disabled]="!ManualForm.valid" class="textboxes">Start</button>
+        </form>
+    </div>
+</div>
+
+<div class="mainFooter" *ngIf="!isManual">
+    <div class="footerHeader">
+        <h1>Manual Control </h1>
+    </div>
+    <div class="footerBody">
+        <h3 style="color: red;">Hit the Manual Control box at the top right corner to Open <strong>Manual
+                controls</strong></h3>
+    </div>
+</div>

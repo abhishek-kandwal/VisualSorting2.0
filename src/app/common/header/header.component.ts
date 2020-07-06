@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IsManualService } from '../../../shared/services/graphControl/isManual/is-manual.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  isManualVal: boolean = false;
+
+  constructor(
+      private isManualService: IsManualService
+      ) { }
 
   ngOnInit(): void {
   }
 
+  isManual(){
+    this.isManualVal?this.isManualVal = false: this.isManualVal = true;
+    this.isManualService.setIsManual(this.isManualVal);
+  }
 }

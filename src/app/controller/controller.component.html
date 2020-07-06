@@ -1,10 +1,17 @@
 <div>
-    <h1>App Controls</h1>
+    <h1>Auto Controls</h1>
 </div>
-<div>
-    <button (click)="CreateGraph()">Generate Graph</button><br>
-    <button (click)="clearGraph()">clear Graph</button><br>
-    <button (click)="doSort('Insertion')">Insertion Sort</button><br>
-    <button (click)="doSort('Quick')">Quick Sort</button><br>
-    <button (click)="doSort('Bubble')">Bubble Sort</button><br>
+<div *ngIf="!isAuto">
+    <button (click)="CreateGraph()" class="appbuttons" >Generate Graph</button><br>
+    <button (click)="clearGraph()" class="appbuttons" >clear Graph</button><br>
+    <div class="subheader">
+        <h1>Algos</h1>
+    </div>
+    <button (click)="doSort('Insertion')" class="appbuttons">Insertion Sort</button><br>
+    <button (click)="doSort('Quick')" class="appbuttons">Quick Sort</button><br>
+    <button (click)="doSort('Bubble')" class="appbuttons">Bubble Sort</button><br>
+</div>
+
+<div *ngIf="isAuto">
+    <p style="color: red;">Hit the Manual Control box at the <br> top right corner to Open <strong>Auto controls</strong></p>
 </div>

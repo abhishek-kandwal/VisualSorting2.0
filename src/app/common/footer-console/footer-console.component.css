@@ -1,0 +1,23 @@
+.footerHeader{
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.footerBody{
+    padding-left: 100px;
+    padding-top: 5px;
+}
+
+.textboxes{
+    margin-left: 20px;
+}
+
+.footerConsole{
+    padding-left: 100px;
+    padding-top: 5px;
+    padding-top: 10px;
+}
+
+.mainFooter{
+    margin-left: 125px;
+}

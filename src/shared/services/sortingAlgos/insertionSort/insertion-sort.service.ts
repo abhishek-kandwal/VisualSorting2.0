@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CreateGraphService } from '../../graphControl/create-graph.service';
-import { SetgraphService } from '../../graphControl/setgraph.service';
+import { CreateGraphService } from '../../graphControl/createGraph/create-graph.service';
+import { SetgraphService } from '../../graphControl/setGraph/setgraph.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class InsertionSortService {
   constructor(private setgraphService : SetgraphService) { }
 
   doSort(graphValue: any){
+    this.sortedArray = [];
+    this.selectedNodes = [];
       for (let i = 0; i < graphValue.length; i++) {
         let j = i;
         while ((j > 0) && (graphValue[j] < graphValue[j - 1])) {
